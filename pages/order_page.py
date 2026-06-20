@@ -90,3 +90,18 @@ class OrderPage(BasePage):
         self.set_comment(comment)
         self.click_order_button()
         self.click_yes_button()
+
+    def get_current_url (self):
+        return self.driver.current_url
+    
+    def switch_window(self,original_window):
+        WebDriverWait(self.driver, 7).until(expected_conditions.number_of_windows_to_be(2))
+
+        for window_handle in self.driver.window_handles:
+            if window_handle != original_window:
+                self.driver.switch_to.window(window_handle)
+                break
+
+    def waiting_dzen_in_url (self):
+        WebDriverWait(self.driver, 7).until(expected_conditions.url_contains('dzen.ru'))
+ 

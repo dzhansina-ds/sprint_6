@@ -1,7 +1,5 @@
 from selenium import webdriver  
 from locators.order_page_locators import OrderPageLocators
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
 from data.urls import URL
 from pages.order_page import OrderPage
 from data.order_page_data import OrderPageData
@@ -23,20 +21,14 @@ class TestOrderPage():
     def test_header_logo_samokat(self,driver,order_page):
         order_page.click_top_order_button()
         order_page.click_header_logo_samokat()
-        assert driver.current_url == URL.start_page
+        assert order_page.get_current_url() == URL.start_page
 
     @allure.title('Проверка логотипа Яндекса')
     @allure.description('Нажимаем на логотип Яндекса. Через редирект открывается главная страница Дзена') 
     def test_header_logo_yandex(self,driver,order_page):
         original_window = driver.current_window_handle
         order_page.click_header_logo_yandex()
-        WebDriverWait(driver, 7).until(expected_conditions.number_of_windows_to_be(2))
+        order_page.switch_window(original_window)
+        order_page.waiting_dzen_in_url()
 
-        for window_handle in driver.window_handles:
-            if window_handle != original_window:
-                driver.switch_to.window(window_handle)
-                break
-
-        WebDriverWait(driver, 10).until(expected_conditions.url_contains('dzen.ru'))
-        
-        assert 'dzen.ru' in driver.current_url
+        assert 'dzen.ru' in order_page.get_current_url()
