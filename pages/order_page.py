@@ -4,12 +4,10 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from locators.order_page_locators import OrderPageLocators
 from selenium.webdriver.common.keys import Keys
+from .base_page import BasePage
 
-class OrderPage():
+class OrderPage(BasePage):
    
-    def __init__(self, driver):
-        self.driver = driver
-
     def accept_cookie(self):
         try:
             cookie_button = WebDriverWait(self.driver,7).until(expected_conditions.element_to_be_clickable((OrderPageLocators.cookie_button)))
@@ -19,65 +17,62 @@ class OrderPage():
 
     def click_top_order_button(self):
         self.accept_cookie()
-        self.driver.find_element(*OrderPageLocators.top_order_button).click()
+        self.click_element(OrderPageLocators.top_order_button)
 
     def click_bottom_order_button(self):
         self.accept_cookie()
-        element = self.driver.find_element(*OrderPageLocators.bottom_order_button)
-        self.driver.execute_script("arguments[0].scrollIntoView();", element)
-        element.click()
-    
+        self.scrolling(OrderPageLocators.bottom_order_button)
+        self.click_element(OrderPageLocators.bottom_order_button)
+
     def set_name(self,name):
-        self.driver.find_element(*OrderPageLocators.name_field).send_keys(name) 
+        self.text_input(OrderPageLocators.name_field,name) 
 
     def set_surname(self,surname):
-        self.driver.find_element(*OrderPageLocators.surname_field).send_keys(surname)
+        self.text_input(OrderPageLocators.surname_field,surname)
 
     def set_address(self,address):
-        self.driver.find_element(*OrderPageLocators.address_field).send_keys(address)
+        self.text_input(OrderPageLocators.address_field,address)
 
     def set_station(self,station):
-        selected_station = self.driver.find_element(*OrderPageLocators.station_field)
-        selected_station.send_keys(station)
-        selected_station.send_keys(Keys.DOWN,Keys.ENTER)
+        self.text_input(OrderPageLocators.station_field,station)
+        self.find_element(OrderPageLocators.station_field).send_keys(Keys.DOWN,Keys.ENTER)
 
     def set_phone(self,phone):
-        self.driver.find_element(*OrderPageLocators.phone_field).send_keys(phone)
+        self.text_input(OrderPageLocators.phone_field,phone)
 
     def click_forward_button(self):
-        self.driver.find_element(*OrderPageLocators.forward_button).click()
+        self.click_element(OrderPageLocators.forward_button)
 
     def set_order_date(self,date):
-        selected_date=self.driver.find_element(*OrderPageLocators.order_date_field)
-        selected_date.send_keys(date)
-        selected_date.send_keys(Keys.ENTER)
+        self.text_input(OrderPageLocators.order_date_field,date)
+        self.find_element(OrderPageLocators.order_date_field).send_keys(Keys.ENTER)
         
     def set_duration_field(self):
-        self.driver.find_element(*OrderPageLocators.second_order_header).click()
-        self.driver.find_element(*OrderPageLocators.order_duration_field).click()
-        self.driver.find_element(*OrderPageLocators.one_day_duration).click()
+        self.click_element(OrderPageLocators.second_order_header)
+        self.click_element(OrderPageLocators.order_duration_field)
+        self.click_element(OrderPageLocators.one_day_duration)
         
     def set_colour(self):
-        self.driver.find_element(*OrderPageLocators.scooter_colour_field).click()
-        self.driver.find_element(*OrderPageLocators.black_colour).click()
+        self.click_element(OrderPageLocators.scooter_colour_field)
+        self.click_element(OrderPageLocators.black_colour)
 
     def set_comment(self, comment):
-        self.driver.find_element(*OrderPageLocators.comment_field).send_keys(comment)
+        self.text_input(OrderPageLocators.comment_field,comment)
         
     def click_order_button(self):
-        self.driver.find_element(*OrderPageLocators.order_button).click()
+        self.click_element(OrderPageLocators.order_button)
 
     def click_yes_button(self):
-        WebDriverWait(self.driver,7).until(expected_conditions.visibility_of_element_located((OrderPageLocators.yes_button))).click()
+        self.find_element_after_waiting(OrderPageLocators.yes_button).click()
  
     def get_text_of_header_success_order (self):
-        return self.driver.find_element(*OrderPageLocators.success_order_window_header).text
+        return self.find_element(OrderPageLocators.success_order_window_header).text
 
     def click_header_logo_yandex(self):
-        self.driver.find_element(*OrderPageLocators.header_logo_yandex).click()
+        self.click_element(OrderPageLocators.header_logo_yandex)
 
     def click_header_logo_samokat(self):
-        self.driver.find_element(*OrderPageLocators.header_logo_samokat).click()
+        self.click_element(OrderPageLocators.header_logo_samokat)
     
     def make_order (self,order_button_place, name,surname,address,station,phone,date,comment):
         if order_button_place == 'top':
