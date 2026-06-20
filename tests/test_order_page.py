@@ -16,8 +16,7 @@ class TestOrderPage():
     @pytest.mark.parametrize('order_button_place, name, surname, address, station, phone, date, comment', OrderPageData.Order_test_data)
     def test_make_order (self,driver,order_page,order_button_place,name, surname, address, station, phone, date,comment):
         order_page.make_order(order_button_place,name, surname, address, station, phone, date,comment)
-        actual_header = order_page.get_text_of_header_success_order()
-        assert 'Заказ оформлен' in actual_header
+        assert order_page.is_watch_status_button_visible() is True
 
     @allure.title('Проверка логотипа "Самоката"')
     @allure.description('Нажимаем на логотип "Самоката". Попадаем на главную страницу "Самоката"') 

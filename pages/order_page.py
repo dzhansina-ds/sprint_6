@@ -59,8 +59,12 @@ class OrderPage(BasePage):
     def click_yes_button(self):
         self.find_element_after_waiting(OrderPageLocators.yes_button).click()
  
-    def get_text_of_header_success_order (self):
-        return self.find_element(OrderPageLocators.success_order_window_header).text
+    def is_watch_status_button_visible(self):
+        try:
+            self.find_element_after_waiting(OrderPageLocators.watch_status_button)
+            return True
+        except Exception:
+            return False
 
     def click_header_logo_yandex(self):
         self.click_element(BasePageLocators.header_logo_yandex)

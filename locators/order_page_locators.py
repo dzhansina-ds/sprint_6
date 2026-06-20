@@ -19,4 +19,4 @@ class OrderPageLocators():
     order_button = [By.XPATH, "//div[contains(@class, 'Order_Buttons')]//button[text()='Заказать']"]
     yes_button = [By.XPATH, "//button[text()='Да']"]
     no_button = [By.XPATH, "//button[text()='Нет']"]
-    success_order_window_header = [By.XPATH, "//div[text()='Заказ оформлен']"]
+    watch_status_button = [By.XPATH, "//button[text()='Посмотреть статус']"]
