@@ -2,9 +2,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 class OrderPageLocators():
-    cookie_button = [By.ID, 'rcc-confirm-button']
-    top_order_button = [By.XPATH, "//div[contains(@class, 'Header_')]//button[text()='Заказать']"]
-    bottom_order_button = [By.XPATH, "//div[contains(@class, 'Home_')]//button[text()='Заказать']"]
     name_field = [By.XPATH,"//input[@placeholder='* Имя']"]
     surname_field = [By.XPATH,"//input[@placeholder='* Фамилия']"]
     address_field = [By.XPATH,"//input[@placeholder='* Адрес: куда привезти заказ']"]
@@ -23,5 +20,3 @@ class OrderPageLocators():
     yes_button = [By.XPATH, "//button[text()='Да']"]
     no_button = [By.XPATH, "//button[text()='Нет']"]
     success_order_window_header = [By.XPATH, "//div[text()='Заказ оформлен']"]
-    header_logo_yandex = [By.XPATH, "//img[@alt='Yandex']"]
-    header_logo_samokat = [By.XPATH, "//img[@alt='Scooter']"]

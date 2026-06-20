@@ -2,27 +2,21 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
+from locators.base_page_locators import BasePageLocators
 from locators.order_page_locators import OrderPageLocators
 from selenium.webdriver.common.keys import Keys
 from .base_page import BasePage
 
 class OrderPage(BasePage):
-   
-    def accept_cookie(self):
-        try:
-            cookie_button = WebDriverWait(self.driver,7).until(expected_conditions.element_to_be_clickable((OrderPageLocators.cookie_button)))
-            cookie_button.click()
-        except Exception:
-            pass
 
     def click_top_order_button(self):
         self.accept_cookie()
-        self.click_element(OrderPageLocators.top_order_button)
+        self.click_element(BasePageLocators.top_order_button)
 
     def click_bottom_order_button(self):
         self.accept_cookie()
-        self.scrolling(OrderPageLocators.bottom_order_button)
-        self.click_element(OrderPageLocators.bottom_order_button)
+        self.scrolling(BasePageLocators.bottom_order_button)
+        self.click_element(BasePageLocators.bottom_order_button)
 
     def set_name(self,name):
         self.text_input(OrderPageLocators.name_field,name) 
@@ -69,10 +63,10 @@ class OrderPage(BasePage):
         return self.find_element(OrderPageLocators.success_order_window_header).text
 
     def click_header_logo_yandex(self):
-        self.click_element(OrderPageLocators.header_logo_yandex)
+        self.click_element(BasePageLocators.header_logo_yandex)
 
     def click_header_logo_samokat(self):
-        self.click_element(OrderPageLocators.header_logo_samokat)
+        self.click_element(BasePageLocators.header_logo_samokat)
     
     def make_order (self,order_button_place, name,surname,address,station,phone,date,comment):
         if order_button_place == 'top':
