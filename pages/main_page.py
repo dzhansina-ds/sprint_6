@@ -8,66 +8,34 @@ from .base_page import BasePage
 
 class MainPage(BasePage):
 
-    def click_first_question_button (self):
+    questions = [
+        MainPageLocators.first_question_button,
+        MainPageLocators.second_question_button,
+        MainPageLocators.third_question_button,
+        MainPageLocators.fourth_question_button,
+        MainPageLocators.fifth_question_button,
+        MainPageLocators.sixth_question_button,
+        MainPageLocators.seventh_question_button,
+        MainPageLocators.eighth_question_button
+    ]
+
+    answers = [
+         MainPageLocators.first_question_answer,
+        MainPageLocators.second_question_answer,
+        MainPageLocators.third_question_answer,
+        MainPageLocators.fourth_question_answer,
+        MainPageLocators.fifth_question_answer,
+        MainPageLocators.sixth_question_answer,
+        MainPageLocators.seventh_question_answer,
+        MainPageLocators.eighth_question_answer
+    ]
+
+    def click_question_button (self,index):
         self.accept_cookie()
-        self.scrolling(MainPageLocators.first_question_button)
-        self.click_element(MainPageLocators.first_question_button)
+        locator = self.questions[index]
+        self.scrolling(locator)
+        self.click_element(locator)
 
-    def click_second_question_button (self):
-        self.accept_cookie()
-        self.scrolling(MainPageLocators.second_question_button)
-        self.click_element(MainPageLocators.second_question_button)
-        
-    def click_third_question_button (self):
-        self.accept_cookie()
-        self.scrolling(MainPageLocators.third_question_button)
-        self.click_element(MainPageLocators.third_question_button)
-
-    def click_fourth_question_button (self):
-        self.accept_cookie()
-        self.scrolling(MainPageLocators.fourth_question_button)
-        self.click_element(MainPageLocators.fourth_question_button)
-
-    def click_fifth_question_button (self):
-        self.accept_cookie()
-        self.scrolling(MainPageLocators.fifth_question_button)
-        self.click_element(MainPageLocators.fifth_question_button)
-
-    def click_sixth_question_button (self):
-        self.accept_cookie()
-        self.scrolling(MainPageLocators.sixth_question_button)
-        self.click_element(MainPageLocators.sixth_question_button)
-
-    def click_seventh_question_button (self):
-        self.accept_cookie()
-        self.scrolling(MainPageLocators.seventh_question_button)
-        self.click_element(MainPageLocators.seventh_question_button)
-
-    def click_eighth_question_button (self):
-        self.accept_cookie()
-        self.scrolling(MainPageLocators.eighth_question_button)
-        self.click_element(MainPageLocators.eighth_question_button)
-
-    def get_first_question_answer(self):
-        return self.find_element_after_waiting(MainPageLocators.first_question_answer)
-
-    def get_second_question_answer(self):
-        return self.find_element_after_waiting(MainPageLocators.second_question_answer)
-
-    def get_third_question_answer(self):
-        return self.find_element_after_waiting(MainPageLocators.third_question_answer)
-
-    def get_fourth_question_answer(self):
-        return self.find_element_after_waiting(MainPageLocators.fourth_question_answer)
-
-    def get_fifth_question_answer(self):
-        return self.find_element_after_waiting(MainPageLocators.fifth_question_answer)
-
-    def get_sixth_question_answer(self):
-        return self.find_element_after_waiting(MainPageLocators.sixth_question_answer)
-
-    def get_seventh_question_answer(self):
-        return self.find_element_after_waiting(MainPageLocators.seventh_question_answer)
-
-    def get_eighth_question_answer(self):
-        return self.find_element_after_waiting(MainPageLocators.eighth_question_answer)
+    def get_question_answer(self,index):
+        locator = self.answers[index]
+        return self.find_element_after_waiting(locator)
