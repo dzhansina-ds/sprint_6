@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from locators.main_page_locators import MainPageLocators
-from tests.urls import URL
+from data.urls import URL
 from pages.main_page import MainPage
 import allure 
 

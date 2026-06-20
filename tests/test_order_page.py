@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from locators.order_page_locators import OrderPageLocators
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-from tests.urls import URL
+from data.urls import URL
 from pages.order_page import OrderPage
 import pytest
 import allure 
