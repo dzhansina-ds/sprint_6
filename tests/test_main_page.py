@@ -3,7 +3,6 @@ import allure
 import pytest
 
 class TestMainPage():
-    driver = None
     
     @allure.title('Проверка появления текста ответа в разделе "Вопросы о важном"')
     @allure.description('Нажимаем на стрелочку рядом с вопросом, открывается текст ответа')
