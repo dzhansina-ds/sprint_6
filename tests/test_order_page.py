@@ -26,9 +26,9 @@ class TestOrderPage():
     @allure.title('Проверка логотипа Яндекса')
     @allure.description('Нажимаем на логотип Яндекса. Через редирект открывается главная страница Дзена') 
     def test_header_logo_yandex(self,driver,order_page):
-        original_window = driver.current_window_handle
+        original_window = order_page.get_current_window_handle()
         order_page.click_header_logo_yandex()
         order_page.switch_window(original_window)
-        order_page.waiting_dzen_in_url()
+        order_page.waiting_text_in_url('dzen.ru')
 
         assert 'dzen.ru' in order_page.get_current_url()
